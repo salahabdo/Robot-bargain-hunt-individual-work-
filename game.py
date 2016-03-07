@@ -6,15 +6,14 @@ from pygame.locals import *
 import sys
 import math
 import random
-
 #pygame dependent function
 def sort_highlight(pX, pY, oX, oY):
     '''Function to highlight items being sorted
 
     Takes 4 integers, position of item, and position of player'''
     pygame.draw.line(DISPLAYSURF, BLUE, (pX, pY), (oX, oY), 1)
-    
-def start():
+   
+def start(fps):
     #Initialize variables
     objs = []
     collected_items = []
@@ -24,6 +23,7 @@ def start():
     steps = 0
     count = 0
     value = 0
+    fps = int(fps)
     ASCENDING = False
     WIDTH = 20
     HEIGHT = 20
@@ -169,7 +169,10 @@ def start():
                 searchingFor += 1
             if searchingFor > len(game_items):
                 game_running = False
+                print(fps)
+            
                 #end of game
+                
             #Searching algorithm
             if (pX < oX):
                 playerPos[0] += 1
@@ -185,7 +188,7 @@ def start():
             for column in range(WIDTH + INV_WIDTH * TILESIZE):
                 DISPLAYSURF.blit(BG, (column * TILESIZE, row * TILESIZE))
         DISPLAYSURF.blit(inv_label, (WIDTH * TILESIZE + 10, TILESIZE / 2))
-        DISPLAYSURF.blit(value_label, (WIDTH * TILESIZE + 10, TILESIZE * HEIGHT / 3))
+        DISPLAYSURF.blit(value_label, (WIDTH * TILESIZE + 10, TILESIZE * HEIGHT / 2))
         DISPLAYSURF.blit(asc_label, (WIDTH * TILESIZE + 10, TILESIZE * HEIGHT / 3 + 20))
         DISPLAYSURF.blit(steps_label, (WIDTH * TILESIZE + 10, TILESIZE * HEIGHT / 3 + 40))
         #Display player, sand, rocks and bushes
@@ -220,7 +223,7 @@ def start():
                 inv_count += 1
                 DISPLAYSURF.blit(i, (WIDTH * TILESIZE + (TILESIZE * 2), 5 + inv_count * TILESIZE))
 
-
+        
         pygame.display.update()
-        clock.tick(60)
+        clock.tick(fps)
 
