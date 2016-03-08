@@ -10,11 +10,17 @@ Game.geometry("550x400+200+200")
 
 def QuitGame():
     Game.destroy()# destroying the main window
-def StartGame():
+def StartGameDes():
     TIME = (Game.TIME.get())
-    
-    LOOP = Game.LOOP.get()
-    start(TIME)
+    SORT = True
+    LOOP = int(Game.LOOP.get())
+    GameLoop(TIME, SORT, LOOP)
+    Game.destroy()
+def StartGameAsc():
+    TIME = (Game.TIME.get())
+    SORT = False
+    LOOP = int(Game.LOOP.get())
+    GameLoop(TIME, SORT, LOOP)
     Game.destroy()
 
 
@@ -33,11 +39,16 @@ Game.label.pack()
 Game.LOOP = StringVar()
 Entry(Game, textvariable=Game.LOOP).pack()
 
+
 QuitButton = Button(Game, text= "Quit", width=20,command=QuitGame)
 QuitButton.pack(side="bottom",padx=15,pady=15)
 
-PlayButton = Button(Game, text= "Play", width=20,command=StartGame)
+
+PlayButton = Button(Game, text= "Descending", width=20,command=StartGameDes)
 PlayButton.pack(side="bottom",padx=15,pady=15)
+
+PlayButton2 = Button(Game, text= "Ascending ", width=20,command=StartGameAsc)
+PlayButton2.pack(side="bottom",padx=15,pady=15)
 
 Game.mainloop()
 

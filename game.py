@@ -12,8 +12,13 @@ def sort_highlight(pX, pY, oX, oY):
 
     Takes 4 integers, position of item, and position of player'''
     pygame.draw.line(DISPLAYSURF, BLUE, (pX, pY), (oX, oY), 1)
-   
-def start(fps):
+    
+def GameLoop(fps, SORT, LOOP):
+    for LOOP in range (LOOP):
+        LOOP = LOOP - 1
+        start(fps, SORT, LOOP)
+
+def start(fps, SORT, LOOP):
     #Initialize variables
     objs = []
     collected_items = []
@@ -24,7 +29,7 @@ def start(fps):
     count = 0
     value = 0
     fps = int(fps)
-    ASCENDING = False
+    ASCENDING = SORT
     WIDTH = 20
     HEIGHT = 20
     INV_WIDTH = 5
@@ -66,9 +71,9 @@ def start(fps):
 
     print("Sorting into order")
     if ASCENDING == True:
-        sorted_list = sort_objects(objs)[::-1]
+        sorted_list = sort_objects(objs)[::-1] #DESCENDING order 
     else:
-        sorted_list = sort_objects(objs)
+        sorted_list = sort_objects(objs) #ASCENDING order
 
     #INITIALIZE PYGAME
     #===============
@@ -168,8 +173,10 @@ def start(fps):
                         value += game_items[i].value
                 searchingFor += 1
             if searchingFor > len(game_items):
-                game_running = False
                 print(fps)
+                game_running = False
+                GameLoop(fps, SORT, LOOP)
+                
             
                 #end of game
                 
