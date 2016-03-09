@@ -1,3 +1,4 @@
+# RUN MAIN TO START THE GAME USE PYTHON 3 NOT 2
 #Current ouput should be the list of items in descending order
 from functions import *
 from classes import *
@@ -6,6 +7,7 @@ from pygame.locals import *
 import sys
 import math
 import random
+from EndOfGame import *
 #pygame dependent function
 def sort_highlight(pX, pY, oX, oY):
     '''Function to highlight items being sorted
@@ -13,12 +15,7 @@ def sort_highlight(pX, pY, oX, oY):
     Takes 4 integers, position of item, and position of player'''
     pygame.draw.line(DISPLAYSURF, BLUE, (pX, pY), (oX, oY), 1)
     
-def GameLoop(fps, SORT, LOOP):
-    for LOOP in range (LOOP):
-        LOOP = LOOP - 1
-        start(fps, SORT, LOOP)
-
-def start(fps, SORT, LOOP):
+def start(fps, SORT):
     #Initialize variables
     objs = []
     collected_items = []
@@ -39,6 +36,8 @@ def start(fps, SORT, LOOP):
     BLUE = (0, 0, 255)
     GREEN = (0, 255, 0)
     TIME = 50000
+    AMOUNT = "6 items"
+    FSCORE = "249"
     SAND = pygame.image.load('assets/sand-new.png')
     STONE = pygame.image.load('assets/stone.png')
     BUSH = pygame.image.load('assets/bush.png')
@@ -93,9 +92,9 @@ def start(fps, SORT, LOOP):
     inv_label = font_renderer.render("Inventory", 1, (255, 255, 255))
     print(ASCENDING, "!_-----------------")
     if (ASCENDING):
-        asc_label = font_renderer.render("Ascending", 1, (255, 255, 255))
-    else:
         asc_label = font_renderer.render("Descending", 1, (255, 255, 255))
+    else:
+        asc_label = font_renderer.render("Ascending", 1, (255, 255, 255))
 
 
     #Build array of locations for randomly placed rocks and trees
@@ -173,9 +172,11 @@ def start(fps, SORT, LOOP):
                         value += game_items[i].value
                 searchingFor += 1
             if searchingFor > len(game_items):
-                print(fps)
                 game_running = False
-                GameLoop(fps, SORT, LOOP)
+                pygame.quit()
+                endGame(steps, ASCENDING, fps, AMOUNT, FSCORE)
+                
+            
                 
             
                 #end of game

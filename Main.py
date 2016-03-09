@@ -1,4 +1,5 @@
 #open in python 3 not 2
+# This WILL NOT! run in python 2
 from tkinter import *
 import tkinter.messagebox
 from game import *
@@ -13,14 +14,12 @@ def QuitGame():
 def StartGameDes():
     TIME = (Game.TIME.get())
     SORT = True
-    LOOP = int(Game.LOOP.get())
-    GameLoop(TIME, SORT, LOOP)
+    start(TIME, SORT)
     Game.destroy()
 def StartGameAsc():
     TIME = (Game.TIME.get())
     SORT = False
-    LOOP = int(Game.LOOP.get())
-    GameLoop(TIME, SORT, LOOP)
+    start(TIME, SORT)
     Game.destroy()
 
 
@@ -32,13 +31,6 @@ Game.label.pack()
 
 Game.TIME = StringVar()
 Entry(Game, textvariable=Game.TIME).pack()
-
-Game.label = Label (Game, text= "How many times do you want the game to loop for ?")
-Game.label.pack()
-
-Game.LOOP = StringVar()
-Entry(Game, textvariable=Game.LOOP).pack()
-
 
 QuitButton = Button(Game, text= "Quit", width=20,command=QuitGame)
 QuitButton.pack(side="bottom",padx=15,pady=15)
