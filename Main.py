@@ -12,15 +12,17 @@ Game.geometry("550x400+200+200")
 def QuitGame():
     Game.destroy()# destroying the main window
 def StartGameDes():
+    Game.destroy()
     TIME = (Game.TIME.get())
     SORT = True
-    start(TIME, SORT)
-    Game.destroy()
+    start(TIME,SORT)
+    
 def StartGameAsc():
+    Game.destroy()
     TIME = (Game.TIME.get())
     SORT = False
-    start(TIME, SORT)
-    Game.destroy()
+    start(TIME,SORT)
+    
 
 
 w = Label(Game, text="It belongs in the museum!", fg="red", font=("Helvetica",25))
@@ -36,10 +38,10 @@ QuitButton = Button(Game, text= "Quit", width=20,command=QuitGame)
 QuitButton.pack(side="bottom",padx=15,pady=15)
 
 
-PlayButton = Button(Game, text= "Descending", width=20,command=StartGameDes)
+PlayButton = Button(Game, text= "start (Descending)", width=20,command=StartGameDes)
 PlayButton.pack(side="bottom",padx=15,pady=15)
 
-PlayButton2 = Button(Game, text= "Ascending ", width=20,command=StartGameAsc)
+PlayButton2 = Button(Game, text="start (Ascending) ", width=20,command=StartGameAsc)
 PlayButton2.pack(side="bottom",padx=15,pady=15)
 
 Game.mainloop()

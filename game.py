@@ -35,9 +35,9 @@ def start(fps, SORT):
     WATER_DENSITY = 10
     BLUE = (0, 0, 255)
     GREEN = (0, 255, 0)
-    TIME = 50000
+    TIME = 5000000 #
     AMOUNT = "6 items"
-    FSCORE = "249"
+    FSCORE = "253"
     SAND = pygame.image.load('assets/sand-new.png')
     STONE = pygame.image.load('assets/stone.png')
     BUSH = pygame.image.load('assets/bush.png')
@@ -173,8 +173,8 @@ def start(fps, SORT):
                 searchingFor += 1
             if searchingFor > len(game_items):
                 game_running = False
-                pygame.quit()
                 endGame(steps, ASCENDING, fps, AMOUNT, FSCORE)
+                pygame.quit()
                 
             
                 
